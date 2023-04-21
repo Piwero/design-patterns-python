@@ -102,11 +102,12 @@ class RubberDuck(Duck):
 
 
 def mini_duck_simulator():
-    print("Mallard Duck Simulator")
+    print("Mallard Duck Simulator:")
     mallard = MallardDuck()
     mallard.perform_quack()
     mallard.perform_fly()
-    print("Model Duck Simulator")
+
+    print("\nModel Duck Simulator:")
     model = ModelDuck()
     model.perform_fly()
     model.set_fly_Behaviour(FlyRocketPowered())
