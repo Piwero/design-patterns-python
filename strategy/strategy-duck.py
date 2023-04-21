@@ -1,8 +1,9 @@
+# Interface
 class FlyBehaviour:
     def fly(self):
         raise NotImplementedError
 
-
+# Behaviours
 class FlyWithWings(FlyBehaviour):
     def fly(self):
         print("I'm flying!!")
@@ -17,12 +18,12 @@ class FlyRocketPowered(FlyBehaviour):
     def fly(self):
         print("I'm flying with a rocket!'")
 
-
+# Interface
 class QuackBehaviour:
     def quack(self):
         raise NotImplementedError
 
-
+# Behaviours
 class Quack(QuackBehaviour):
     def quack(self):
         print("Quack")
@@ -37,7 +38,7 @@ class Squeak(QuackBehaviour):
     def quack(self):
         print("Squeak")
 
-
+# Abstract class
 class Duck:
     _fly_Behaviour = None
     _quack_Behaviour = None
@@ -60,7 +61,7 @@ class Duck:
     def swim(self):
         print("All ducks float, even decoys!")
 
-
+# Duck classes
 class MallardDuck(Duck):
     _fly_Behaviour = FlyWithWings()
     _quack_Behaviour = Quack()
@@ -110,6 +111,7 @@ def mini_duck_simulator():
     print("\nModel Duck Simulator:")
     model = ModelDuck()
     model.perform_fly()
+    # Set behaviour dynamically
     model.set_fly_Behaviour(FlyRocketPowered())
     model.perform_fly()
 
