@@ -1,7 +1,10 @@
+# Examples of Head First Design Patterns book written in Python
+
 # Interface
 class FlyBehaviour:
     def fly(self):
         raise NotImplementedError
+
 
 # Behaviours
 class FlyWithWings(FlyBehaviour):
@@ -18,10 +21,12 @@ class FlyRocketPowered(FlyBehaviour):
     def fly(self):
         print("I'm flying with a rocket!'")
 
+
 # Interface
 class QuackBehaviour:
     def quack(self):
         raise NotImplementedError
+
 
 # Behaviours
 class Quack(QuackBehaviour):
@@ -37,6 +42,7 @@ class MuteQuack(QuackBehaviour):
 class Squeak(QuackBehaviour):
     def quack(self):
         print("Squeak")
+
 
 # Abstract class
 class Duck:
@@ -60,6 +66,7 @@ class Duck:
 
     def swim(self):
         print("All ducks float, even decoys!")
+
 
 # Duck classes
 class MallardDuck(Duck):
