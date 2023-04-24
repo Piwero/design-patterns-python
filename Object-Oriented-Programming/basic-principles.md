@@ -113,3 +113,39 @@ cat.scratch()              # Output: The cat scratches furniture.
 
 ## 4. Polymorphism
 Polymorphism means one name many forms. It is done using method overloading and method overriding.
+```python
+# Parent class
+class Animal:
+    def make_sound(self):
+        print("The animal makes a generic sound.")
+
+# Child class implementing Animal's make_sound method
+class Dog(Animal):
+    def make_sound(self):
+        print("The dog barks.")
+
+# Child class implementing Animal's make_sound method
+class Cat(Animal):
+    def make_sound(self):
+        print("The cat meows.")
+
+# Child class implementing Animal's make_sound method
+class Elephant(Animal):
+    def make_sound(self):
+        print("The elephant trumpets.")
+
+# Function that takes an Animal object and calls its make_sound method
+def make_animal_sound(animal):
+    animal.make_sound()
+
+# Create instances of Dog, Cat, and Elephant classes
+dog = Dog()
+cat = Cat()
+elephant = Elephant()
+
+# Call the make_animal_sound function with different objects
+make_animal_sound(dog)       # Output: The dog barks.
+make_animal_sound(cat)       # Output: The cat meows.
+make_animal_sound(elephant)  # Output: The elephant trumpets.
+
+```
