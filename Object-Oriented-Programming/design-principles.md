@@ -42,6 +42,12 @@ class Spell:
         print("Casts a spell!")
 ```
 
-## Loosely coupled
+## Program to interfaces, not implementations 
+OO design principle that suggests using interfaces or abstract classes as contracts for components, rather than specific implementations. 
+This encourages loose coupling, flexibility, and extension in software systems. 
+Components connect based on stated interfaces or abstract classes, allowing for interchangeable implementations. 
+This method supports decoupling, freedom, and code reusability in object-oriented designs.
+
+## Strive for loosely coupled designs
 Two loosely coupled objects means that they can interact but they have little knowledge of each other. This offers a lot of flexibility. Design patterns examples include the observer pattern.
 Loosely coupled designs permit us to build flexible OO applications that can be easily changed because they minimise the interdependency between objects.
