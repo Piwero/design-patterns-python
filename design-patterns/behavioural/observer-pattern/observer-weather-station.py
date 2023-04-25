@@ -1,6 +1,6 @@
 # Examples of Head First Design Patterns book written in Python
 
-
+# Interface
 class Subject:
     def register_observer(self, observer):
         raise NotImplementedError
@@ -12,6 +12,7 @@ class Subject:
         raise NotImplementedError
 
 
+# Interface
 class Observer:
     def update(self, temp, humidity, pressure):
         raise NotImplementedError
