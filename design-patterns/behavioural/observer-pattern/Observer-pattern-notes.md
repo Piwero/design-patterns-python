@@ -37,3 +37,6 @@ classDiagram
     Observer <|-- ConcreteObserver1
     Observer <|-- ConcreteObserver2
 ```
+
+## Resources:
+- [The Observer Pattern in Python](https://www.protechtraining.com/blog/post/tutorial-the-observer-pattern-in-python-879)
