@@ -65,3 +65,35 @@ By depending on abstractions, you can define an abstract class or interface call
 
 This approach allows you to add new media types by creating classes that implement the MediaPlayer interface, without modifying existing code. It promotes code reuse, modularity, and makes your application more maintainable and scalable.
 
+- Related to dependacy inversion:
+
+```python
+class DatabaseInterface:
+    def save(self, data):
+        raise NotImplementedError
+
+class Database(DatabaseInterface):
+    def save(self, data):
+        print(f"Saving data to the database: {data}")
+
+class UserManagementService:
+    def __init__(self, database: DatabaseInterface):
+        self.database = database
+
+    def register_user(self, user_data):
+        # Perform user registration logic
+        self.database.save(user_data)
+        print("User registered successfully")
+
+database = Database()
+user_management_service = UserManagementService(database)
+user_management_service.register_user("John Doe")
+```
+
+In this example, we have the DatabaseInterface, which defines the contract for saving data. The Database class implements this interface.
+
+The UserManagementService class depends on the DatabaseInterface through its constructor. It doesn’t directly depend on the Database class, but it can work with any class that implements the DatabaseInterface.
+
+By applying the Dependency Inversion Principle, we achieve loose coupling between the UserManagementService and the Database. If we decide to switch to a different database implementation, we can create a new class that implements the DatabaseInterface and pass it to the UserManagementService without modifying its code.
+
+This approach allows for easier testing, as we can create mock or fake implementations of the DatabaseInterface for testing purposes. It also promotes modularity and flexibility, enabling us to swap out dependencies with minimal impact on the codebase.
