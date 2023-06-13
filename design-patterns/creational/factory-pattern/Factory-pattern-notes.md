@@ -1,57 +1,106 @@
 # Factory
 
-## The Factory method
+Factory Method Pattern:
+The Factory Method pattern is a creational design pattern that provides an interface for creating objects but allows subclasses to decide which class to instantiate. It encapsulates the object creation logic in a separate method, known as the factory method, which subclasses override to create specific objects.
 
-The Factory Method is a design pattern that provides an interface for producing objects while delegating real object creation to subclasses. It wraps the object creation logic, allowing for object creation flexibility without tightly coupling client code to specific classes. The Factory Method pattern is made up of a base class or interface that defines the common creation method and concrete subclasses that use this method to generate individual objects. This approach allows for extension and flexibility by allowing for the addition of new subclasses to build distinct variations of objects. The "open-closed" approach is promoted by the Factory Method, which allows code to be open for extension but closed for modification.
+Key Components:
 
-It is typically used in cases where producing objects of similar types is required, but the actual type is determined at runtime or can vary depending on certain conditions.
+	•	Product: Represents the objects that the factory method creates.
+	•	Creator: Declares the factory method that returns a Product object. This can be an abstract class or an interface.
+	•	Concrete Creator: Implements the factory method to create specific instances of the Product.
+
+Example:
 
 ```python
 from abc import ABC, abstractmethod
 
-class Product(ABC):
+class Animal(ABC):
     @abstractmethod
-    def operation(self):
+    def speak(self):
         pass
 
-class ProductFactory(ABC):
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+class AnimalFactory(ABC):
     @abstractmethod
-    def create_product(self) -> Product:
+    def create_animal(self) -> Animal:
         pass
- ```
-Next, you create concrete implementations of Product and ProductFactory. For example:
 
-```python
-class ConcreteProductA(Product):
-    def operation(self):
-        return "ConcreteProductA operation"
+class DogFactory(AnimalFactory):
+    def create_animal(self) -> Animal:
+        return Dog()
 
-class ConcreteProductB(Product):
-    def operation(self):
-        return "ConcreteProductB operation"
+class CatFactory(AnimalFactory):
+    def create_animal(self) -> Animal:
+        return Cat()
 
-class ConcreteProductFactoryA(ProductFactory):
-    def create_product(self) -> Product:
-        return ConcreteProductA()
+def client_code(factory: AnimalFactory):
+    animal = factory.create_animal()
+    sound = animal.speak()
+    print(sound)
 
-class ConcreteProductFactoryB(ProductFactory):
-    def create_product(self) -> Product:
-        return ConcreteProductB()
- ```
-Now, in your code, you can use the ProductFactory to create instances of the desired products without explicitly knowing their implementations. Here's an example:
+dog_factory = DogFactory()
+client_code(dog_factory)  # Output: Woof!
 
-```python
-def client_code(factory: ProductFactory):
-    product = factory.create_product()
-    result = product.operation()
-    print(result)
-
-factory_a = ConcreteProductFactoryA()
-client_code(factory_a)  # Output: ConcreteProductA operation
-
-factory_b = ConcreteProductFactoryB()
-client_code(factory_b)  # Output: ConcreteProductB operation
+cat_factory = CatFactory()
+client_code(cat_factory)  # Output: Meow!
 ```
-By utilizing the Factory Method pattern, you can separate the object creation logic from the client code. This promotes flexibility and allows you to easily introduce new product types by creating additional ConcreteProduct subclasses and corresponding ConcreteProductFactory implementations.
 
+Explanation:
+In this example, the Factory Method pattern is used to create different types of animals. The Animal abstract class defines the common interface for all animals. The Dog and Cat classes inherit from Animal and provide their own implementations of the speak() method.
 
+The AnimalFactory abstract class declares the create_animal() method, which returns an instance of Animal. The DogFactory and CatFactory classes inherit from AnimalFactory and implement the create_animal() method to create specific animal instances.
+
+The client code can use different factory objects (DogFactory and CatFactory) to create and interact with different types of animals without knowing the specific classes involved. This promotes loose coupling between the client and the specific animal classes.
+
+Abstract Factory Pattern:
+The Abstract Factory pattern is a creational design pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes. It encapsulates the creation of multiple objects that work together into a separate factory hierarchy.
+
+Key Components:
+
+	•	Abstract Product: Declares the interface that each specific product family must implement.
+	•	Concrete Product: Represents a specific product family and implements the Abstract Product interface.
+	•	Abstract Factory: Declares factory methods for creating Abstract Product objects.
+	•	Concrete Factory: Implements the factory methods to create specific instances of the Abstract Product.
+
+Example:
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def draw(self):
+        pass
+
+class Circle(Shape):
+    def draw(self):
+        return "Drawing Circle"
+
+class Square(Shape):
+    def draw(self):
+        return "Drawing Square"
+
+class AbstractShapeFactory(ABC):
+    @abstractmethod
+    def create_shape(self) -> Shape:
+        pass
+
+class CircleFactory(AbstractShapeFactory):
+    def create_shape(self) -> Shape:
+        return Circle()
+
+class SquareFactory(AbstractShapeFactory):
+    def create_shape(self) -> Shape:
+        return Square()
+
+def client_code(factory: AbstractShapeFactory):
+    shape = factory.create_shape()
+    drawing = shape.draw()
+    print(drawing)
+```
