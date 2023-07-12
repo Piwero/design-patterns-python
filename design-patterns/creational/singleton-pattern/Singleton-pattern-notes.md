@@ -89,3 +89,6 @@ Readability: Enum members clearly define the singleton instances, making the cod
 Type safety: Enums provide type checking, ensuring that only valid enum members are used as singleton instances.
 
 However, it's important to note that replacing the singleton pattern with an enum is not always a direct one-to-one replacement. The enum approach is suitable when you have a fixed number of singleton instances known at compile time. If you need more dynamic control over instantiation or if the singleton instances require additional methods and properties, then a custom class implementation might be more appropriate.
+
+# More resources
+* [StackOverflow question](https://stackoverflow.com/questions/6760685/creating-a-singleton-in-python?noredirect=1&lq=1) 
